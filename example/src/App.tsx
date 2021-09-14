@@ -1,18 +1,18 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import CalendarsDaterangePicker from 'react-native-calendars-daterange-picker';
+import { StyleSheet, View } from 'react-native';
+import { DateRangePicker } from 'react-native-calendars-daterange-picker';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
 
-  React.useEffect(() => {
-    CalendarsDaterangePicker.multiply(3, 7).then(setResult);
-  }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <DateRangePicker
+        initialRange={[new Date(), new Date()]}
+        onSuccess={() => {}}
+        theme={{}}
+    />
     </View>
   );
 }
