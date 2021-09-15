@@ -1,6 +1,6 @@
 {
   "name": "rn-calendars-daterange-picker",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "react-native-calendars-daterange-picker",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
