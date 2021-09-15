@@ -40,7 +40,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       toDate: Date,
       updatedMarkedDates: MarkedDates
     ): [MarkedDates, number] => {
-      const range = differenceInDays(from, toDate);
+      const range = differenceInDays(toDate, from);
       console.log('Range', range);
       if (range >= 0) {
         if (range === 0) {
