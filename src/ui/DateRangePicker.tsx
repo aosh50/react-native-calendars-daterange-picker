@@ -1,5 +1,6 @@
 import { addDays, differenceInDays, format } from 'date-fns';
 import React, { useState, useCallback, useEffect } from 'react';
+import { Button } from 'react-native';
 import {
   Calendar,
   CalendarProps,
@@ -130,6 +131,44 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     }
   };
 
+  const selectRange = (start: Date, end: Date) => {
+    const range = differenceInDays(end, start);
+    if (range < 0) {
+      setMarkedDates({
+        [format(end, 'yyyy-MM-dd')]: {
+          startingDay: true,
+          ...themeSelectedColour(),
+        },
+      });
+      return;
+    }
+    const rangeDates: MarkedDates = {
+      [format(start, 'yyyy-MM-dd')]: {
+        startingDay: true,
+        ...themeSelectedColour(),
+      },
+    };
+    for (var i = 1; i <= range; i++) {
+      const tempDate = format(addDays(start, i), 'yyyy-MM-dd');
+      if (i < range) {
+        rangeDates[tempDate] = themeSelectedColour();
+      } else {
+        rangeDates[tempDate] = {
+          endingDay: true,
+          ...themeSelectedColour(),
+        };
+      }
+    }
+    setMarkedDates(rangeDates);
+  };
+
+  const lastMonth = () => {
+    const now = new Date();
+    const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const endOfLastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+    selectRange(startOfLastMonth, endOfLastMonth);
+  };
+
   return (
     <ErrorBoundary>
       <Calendar
@@ -141,6 +180,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
           onDayPress(day);
         }}
       />
+      <Button title={'Last Month'} onPress={lastMonth} />
     </ErrorBoundary>
   );
 };
