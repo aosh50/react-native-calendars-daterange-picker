@@ -90,11 +90,11 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     const updatedMarkedDates = {
       [format(dayDate, 'yyyy-MM-dd')]: {
         startingDay: true,
-        ...themeSelectedColour,
+        ...themeSelectedColour(),
       },
     };
     setIsFromDatePicked(true);
-    setIsToDatePicked(true);
+    setIsToDatePicked(false);
     setFromDate(dayDate);
     setMarkedDates(updatedMarkedDates);
   };
