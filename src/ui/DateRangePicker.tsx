@@ -86,7 +86,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   }, [setupInitialRange]);
 
   const setupStartMarker = (day: DateObject) => {
-    const dayDate = new Date(day.year, day.month, day.day);
+    const dayDate = new Date(day.dateString);
     const updatedMarkedDates = {
       [format(dayDate, 'yyyy-MM-dd')]: {
         startingDay: true,
@@ -116,7 +116,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       if (range >= 0) {
         setIsToDatePicked(true);
         setMarkedDates(mMarkedDates);
-        onSuccess(fromDate!, new Date(day.year, day.month, day.day));
+        onSuccess(fromDate!, new Date(day.dateString));
       } else {
         setupStartMarker(day);
       }
