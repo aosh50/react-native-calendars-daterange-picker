@@ -1,6 +1,6 @@
 import { addDays, differenceInDays, format } from 'date-fns';
 import React, { useState, useCallback, useEffect } from 'react';
-import { Button } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 import {
   Calendar,
   CalendarProps,
@@ -189,8 +189,40 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
           onDayPress(day);
         }}
       />
-      <Button color={'#fff'} title={'Last Month'} onPress={lastMonth} />
-      <Button color={'#fff'} title={'Last 7 days'} onPress={lastWeek} />
+      <QuickButton title={'Last Month'} onPress={lastMonth} />
+      <QuickButton title={'Last 7 days'} onPress={lastWeek} />
     </ErrorBoundary>
   );
 };
+
+const QuickButton = ({
+  title,
+  onPress,
+}: {
+  title: string;
+  onPress: () => void;
+}) => {
+  return (
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Text style={styles.text}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
+const styles = StyleSheet.create({
+  button: {
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    // borderRadius: 4,
+    elevation: 3,
+    backgroundColor: '#fff',
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: '#000',
+  },
+});
