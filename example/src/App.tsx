@@ -4,15 +4,13 @@ import { StyleSheet, View } from 'react-native';
 import { DateRangePicker } from 'react-native-calendars-daterange-picker';
 
 export default function App() {
-
-
   return (
     <View style={styles.container}>
       <DateRangePicker
         initialRange={[new Date(), new Date()]}
         onSuccess={() => {}}
         theme={{}}
-    />
+      />
     </View>
   );
 }
