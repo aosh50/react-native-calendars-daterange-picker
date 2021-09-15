@@ -44,7 +44,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       if (range >= 0) {
         if (range === 0) {
           updatedMarkedDates = {
-            [toDate.toISOString()]: themeSelectedColour(),
+            [format(toDate, 'yyyy-MM-dd')]: themeSelectedColour(),
           };
         } else {
           for (var i = 1; i <= range; i++) {
@@ -69,7 +69,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     if (!initialRange) return;
     const [from, toDate] = initialRange;
     const initialMarkedDate = {
-      [from.toISOString()]: {
+      [format(from, 'yyyy-MM-dd')]: {
         startingDay: true,
         ...themeSelectedColour,
       },
@@ -86,12 +86,16 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   }, [setupInitialRange]);
 
   const setupStartMarker = (day: DateObject) => {
+    const dayDate = new Date(day.year, day.month, day.day);
     const updatedMarkedDates = {
-      [day.dateString]: { startingDay: true, ...themeSelectedColour },
+      [format(dayDate, 'yyyy-MM-dd')]: {
+        startingDay: true,
+        ...themeSelectedColour,
+      },
     };
     setIsFromDatePicked(true);
     setIsToDatePicked(true);
-    setFromDate(new Date(day.dateString));
+    setFromDate(dayDate);
     setMarkedDates(updatedMarkedDates);
   };
 
@@ -101,14 +105,14 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     } else if (!isToDatePicked) {
       const [mMarkedDates, range] = setupMarkedDates(
         fromDate!,
-        new Date(day.dateString),
+        new Date(day.year, day.month, day.day),
         markedDates
       );
       if (range >= 0) {
         setIsFromDatePicked(true);
         setIsToDatePicked(true);
         setMarkedDates(mMarkedDates);
-        onSuccess(fromDate!, new Date(day.dateString));
+        onSuccess(fromDate!, new Date(day.year, day.month, day.day));
       } else {
         setupStartMarker(day);
       }
