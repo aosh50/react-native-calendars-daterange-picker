@@ -173,7 +173,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     const startOfLastWeek = new Date(
       now.getFullYear(),
       now.getMonth(),
-      now.getDate() - 7
+      now.getDate() - 6
     );
     selectRange(startOfLastWeek, now);
   };
@@ -189,8 +189,8 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
           onDayPress(day);
         }}
       />
-      <Button title={'Last Month'} onPress={lastMonth} />
-      <Button title={'Last 7 days'} onPress={lastWeek} />
+      <Button color={'#fff'} title={'Last Month'} onPress={lastMonth} />
+      <Button color={'#fff'} title={'Last 7 days'} onPress={lastWeek} />
     </ErrorBoundary>
   );
 };
