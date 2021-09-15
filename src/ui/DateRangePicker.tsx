@@ -106,6 +106,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     if (!isFromDatePicked || (isFromDatePicked && isToDatePicked)) {
       setupStartMarker(day);
     } else if (!isToDatePicked) {
+      console.log('Setting To Date', day.dateString, fromDate);
       const [mMarkedDates, range] = setupMarkedDates(
         fromDate!,
         new Date(day.dateString),
