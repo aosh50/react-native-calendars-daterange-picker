@@ -41,6 +41,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       updatedMarkedDates: MarkedDates
     ): [MarkedDates, number] => {
       const range = differenceInDays(from, toDate);
+      console.log('Range', range);
       if (range >= 0) {
         if (range === 0) {
           updatedMarkedDates = {
@@ -48,7 +49,11 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
           };
         } else {
           for (var i = 1; i <= range; i++) {
+            console.log('Loop', i);
+
             const tempDate = format(addDays(from, i), 'yyyy-MM-dd');
+            console.log('tempDate', tempDate);
+
             if (i < range) {
               updatedMarkedDates[tempDate] = themeSelectedColour();
             } else {
@@ -60,6 +65,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
           }
         }
       }
+      console.log(updatedMarkedDates);
       return [updatedMarkedDates, range];
     },
     [themeSelectedColour]
