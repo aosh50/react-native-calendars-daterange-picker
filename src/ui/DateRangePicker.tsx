@@ -224,5 +224,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: '#000',
+    textAlign: 'center',
   },
 });
