@@ -111,6 +111,8 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
         new Date(day.year, day.month, day.day),
         markedDates
       );
+      console.log('onDayPresssetupMarkedDates', mMarkedDates, range);
+
       if (range >= 0) {
         setIsToDatePicked(true);
         setMarkedDates(mMarkedDates);
