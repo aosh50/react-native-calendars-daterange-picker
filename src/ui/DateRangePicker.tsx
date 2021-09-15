@@ -171,6 +171,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
     const endOfLastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
     selectRange(startOfLastMonth, endOfLastMonth);
+    onSuccess(startOfLastMonth, endOfLastMonth);
   };
   const lastWeek = () => {
     const now = new Date();
@@ -180,6 +181,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       now.getDate() - 6
     );
     selectRange(startOfLastWeek, now);
+    onSuccess(startOfLastWeek, now);
   };
 
   return (
