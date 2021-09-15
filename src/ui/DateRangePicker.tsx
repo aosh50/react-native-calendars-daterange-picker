@@ -12,6 +12,8 @@ import ErrorBoundary from './ErrorBoundary';
 export type DateRangePickerProps = {
   initialRange?: [Date, Date];
   onSuccess: (from: Date, to: Date) => void;
+  onDone?: () => void;
+  doneTitle?: string;
 } & CalendarProps;
 
 export type MarkedDates = Record<string, PeriodMarking>;
@@ -19,6 +21,8 @@ export type MarkedDates = Record<string, PeriodMarking>;
 export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   initialRange,
   onSuccess,
+  onDone,
+  doneTitle,
   ...calendarProps
 }) => {
   const [isFromDatePicked, setIsFromDatePicked] = useState(false);
@@ -191,6 +195,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       />
       <QuickButton title={'Last Month'} onPress={lastMonth} />
       <QuickButton title={'Last 7 days'} onPress={lastWeek} />
+      {onDone && <QuickButton title={doneTitle ?? 'Done'} onPress={onDone} />}
     </ErrorBoundary>
   );
 };
